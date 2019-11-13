@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { axiosWithAuth } from "./../axiosWithAuth/axiosWithAuth";
 
 const Login = () => {
@@ -25,11 +24,11 @@ const Login = () => {
                 "/api/login",
                 credentials
             )
-            .then(response => {
-                console.log("response", response);
+            .then(res => {
+                console.log("res", res);
 
-                sessionStorage.setItem("token", response.data.payload);
-                if ("token" ? setLoggedIn(true) : setLoggedIn(false));
+                localStorage.setItem("token", res.data.payload);
+                if ("token" ? setLoggedIn(true) : null);
             });
     };
 
