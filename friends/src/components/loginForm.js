@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "./../axiosWithAuth/axiosWithAuth";
 
 const Login = () => {
@@ -17,6 +17,11 @@ const Login = () => {
         })
     };
 
+    useEffect(() => {
+        let token = localStorage.getItem("token");
+        if (token ? setLoggedIn(true) : null);
+    }, [])
+
     const login = e => {
         e.preventDefault();
         axiosWithAuth()
@@ -29,12 +34,13 @@ const Login = () => {
 
                 localStorage.setItem("token", res.data.payload);
                 if ("token" ? setLoggedIn(true) : null);
+                // res.data.props.history.push('/friends');
             });
     };
 
     return (
         <div>
-            <h2>{loggedIn ? "You are logged in" : "Please log in"}</h2>
+            <h2>{loggedIn ? `Welcome back ${credentials.username}` : "Please log in"}</h2>
             <form onSubmit={login}>
                 <input
                     type="text"
