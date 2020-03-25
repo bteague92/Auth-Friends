@@ -10,19 +10,19 @@ function App() {
 
   const [friends, setFriends] = useState([])
 
-  const getData = () => {
-    axios
-      .get(`http://localhost:5000/api/friends`, {
-        headers: { authorization: localStorage.getItem("token") }
-      })
-      .then(res => {
-        console.log(res)
-        if ("token" ? setFriends(res.data) : setFriends([]));
+  // const getData = () => {
+  //   axios
+  //     .get(`http://localhost:5000/api/friends`, {
+  //       headers: { authorization: localStorage.getItem("token") }
+  //     })
+  //     .then(res => {
+  //       console.log(res)
+  //       if ("token" ? setFriends(res.data) : setFriends([]));
 
-      })
-  };
+  //     })
+  // };
 
-  getData();
+  // getData();
 
   return (
     <Router>
@@ -31,8 +31,11 @@ function App() {
         <Link to="/friends">Friends</Link>
         <Switch>
           <PrivateRoute path="/friends">
-            <Friends friends={friends} />
+            <Friends friends={friends} setFriends={setFriends} />
           </PrivateRoute>
+          {/* <Route path="/login">
+            <Login getData={getData} />
+          </Route> */}
           <Route path="/login" component={Login} />
         </Switch>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "./../axiosWithAuth/axiosWithAuth";
 
-const NewFriend = () => {
+const NewFriend = (props) => {
 
     const [newFriend, setNewFriend] = useState({
         id: Date.now(),
@@ -26,8 +26,22 @@ const NewFriend = () => {
             )
             .then(res => {
                 console.log("res for new friend", res);
+                props.setCount(props.count + 1)
             });
     };
+    // const getData = () => {
+    //     axios
+    //       .get(`http://localhost:5000/api/friends`, {
+    //         headers: { authorization: localStorage.getItem("token") }
+    //       })
+    //       .then(res => {
+    //         console.log(res)
+    //         if ("token" ? setFriends(res.data) : setFriends([]));
+
+    //       })
+    //   };
+
+    //   getData();
 
     return (
         <div>

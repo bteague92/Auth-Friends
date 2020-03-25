@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "./../axiosWithAuth/axiosWithAuth";
 
-const Login = () => {
+const Login = (props) => {
 
     const [credentials, setCredentials] = useState({
         username: '',
@@ -34,7 +34,8 @@ const Login = () => {
 
                 localStorage.setItem("token", res.data.payload);
                 if ("token" ? setLoggedIn(true) : null);
-                // res.data.props.history.push('/friends');
+                // if ("token" ? props.getData() : null);
+                props.history.push('/friends');
             });
     };
 
